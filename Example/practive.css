@@ -1,0 +1,138 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container{
+    background-color: rgb(151, 226, 231);
+    width: 1140px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1,h2{
+    color: purple;
+}
+
+h1{
+    font-size: 80px;
+}
+h2{
+    font-size: 40px;
+}
+
+.content{
+    width: 75%;
+    float: left;
+}
+
+form{
+    width: 25%;
+    float: left;
+}
+input{
+    margin:20px ;
+    width: 200px;
+    padding: 10px 20px;
+}
+textarea{
+    width: 200px;
+    margin-left: 20px;
+    padding: 20px;
+}
+.avatar{
+
+}
+
+input, textarea{
+    display: block;
+}
+.clearfix::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.date{
+    position: relative;
+     left: 200px
+}
+
+.avatar_image{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+h4{
+    float: left;
+    margin-top: 40px;
+}
+.info{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+/* *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2{
+    color: purple;
+}
+
+h1{
+    font-size: 80px;
+    margin-bottom: 15px;
+}
+
+h2{
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+p{
+    margin-bottom: 10px;
+}
+
+.container{
+    /* width: 1140px;
+    margin: 0 auto;
+    background-color: lavender;
+    padding: 0 20px; */
+
+    /* background-color: rgb(151, 226, 231);
+    margin-left: 7%;
+    margin-right: 7%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+.content{
+    width: 75%;
+    float: left;
+}
+
+form{
+    width: 25%;
+    float: left;
+}
+
+input, textarea{
+    display: block;
+}
+
+.clearfix::after{
+    content: "";
+    display: table;
+    clear: both;
+} */

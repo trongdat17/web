@@ -1,0 +1,86 @@
+
+PROGRAM _INIT
+	(* Insert code here *)
+	 Action_test;
+END_PROGRAM
+
+PROGRAM _CYCLIC
+	(* Insert code here *)
+	//pDTStructure;
+	Action_test;
+	enable := TRUE;
+	DTStructureGetTime_0(enable := enable, pDTStructure := ADR(pDTStructure));
+	//sDate;
+	//iDate;
+	//sTime;
+	//iTime;
+	buffer := '';
+	// get year
+	buffer := UINT_TO_STRING(pDTStructure.year);
+	sDate := CONCAT('',buffer);
+	// get month
+	IF pDTStructure.month < 10 THEN
+		sDate := CONCAT(sDate,'0');
+	END_IF;
+	buffer := USINT_TO_STRING(pDTStructure.month);
+	sDate := CONCAT(sDate, buffer);
+	//get day
+	IF pDTStructure.day < 10 THEN
+		sDate := CONCAT(sDate,'0');
+	END_IF;
+	buffer := USINT_TO_STRING(pDTStructure.day);
+	sDate := CONCAT(sDate,buffer);
+	iDate := STRING_TO_UDINT(sDate);
+	
+	// get hour
+	sTime := '0';
+	buffer := USINT_TO_STRING(pDTStructure.hour);
+	IF pDTStructure.hour < 10 THEN
+		sTime := CONCAT(sTime,'0');
+	END_IF;
+	sTime := CONCAT(sTime,buffer);
+	// get minute
+	IF pDTStructure.minute < 10 THEN
+		sTime := CONCAT(sTime,'0');
+	END_IF;
+	buffer := USINT_TO_STRING(pDTStructure.minute);
+	sTime := CONCAT(sTime, buffer);
+	//get second
+	IF pDTStructure.second < 10 THEN
+		sTime := CONCAT(sTime,'0');
+	END_IF;
+	buffer := USINT_TO_STRING(pDTStructure.second);
+	sTime := CONCAT(sTime,buffer);
+	sTime := CONCAT(sTime,'00');
+	iTime := STRING_TO_UDINT(sTime);
+	// Convert Date to BCD
+	iInput := iDate;
+	FOR k := 3 TO 0 BY -1 DO
+		twoLastNums := 0;
+		iBcd := 0;
+		iDigitValue;
+		// Get 2 last number of input data
+		twoLastNums := iInput MOD 100;
+		// Create BCD number from twoLastNums
+		// Get row unit of  twoLastNums
+		iDigitValue := twoLastNums MOD 10;
+		// Add digit value to BCD number
+		iBcd := iBcd OR iDigitValue;
+		// Get dozens unit of twoLastNums
+		iDigitValue := twoLastNums / 10;
+		// Add digit value to BCD number
+		iBcd := iBcd OR SHL(iDigitValue,4);
+		// Add BCD number to array
+		output_BYTE[k] := DINT_TO_BYTE(iBcd);
+		// Remove converted part
+		iInput := iInput/100;
+	END_FOR;
+	LCRLimScal_0(x := INPUT_DIGITAL, x1 :=0.0 , y1 :=0.0 , x2 :=32767.0 , y2 :=150.0 );
+	temper := LCRLimScal_0.y;
+END_PROGRAM
+
+PROGRAM _EXIT
+	(* Insert code here *)
+	 
+END_PROGRAM
+
